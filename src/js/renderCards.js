@@ -3,15 +3,15 @@ import { refs } from './refs';
 
 export function renderCards() {
   const cards = localStorageApi.load();
-    
-    if (!cards) {
-        return;
-    }
-    
+
+  if (!cards) {
+    return;
+  }
+
   const markup = cards
-    .map(({ taskName, taskText }) => {
+    .map(({ taskName, taskText, id }) => {
       return `<li class="task-list-item">
-      <button class="task-list-item-btn">Удалить</button>
+      <button class="task-list-item-btn" data-id="${id}">Удалить</button>
       <h3>${taskName}</h3>
       <p>${taskText}</p>
   </li>`;
@@ -19,4 +19,4 @@ export function renderCards() {
     .join('');
 
   refs.list.insertAdjacentHTML('beforeend', markup);
-};
+}
