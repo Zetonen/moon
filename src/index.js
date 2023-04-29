@@ -14,3 +14,18 @@
  * прибрати завдання зі списку.
  * Список із завданнями має бути доступним після перезавантаження сторінки.
  */
+import { refs } from './js/refs';
+import localStorageApi from './js/localStorage';
+
+refs.form.addEventListener('submit', onSubmitForm);
+
+function onSubmitForm(e) {
+  e.preventDefault();
+  const formValues = {};
+
+  new FormData(e.currentTarget).forEach((value, name) => {
+    formValues[name] = value;
+  });
+
+  localStorageApi.save(formValues);
+}
